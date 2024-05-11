@@ -1,0 +1,230 @@
+=== RUN   TestForth
+=== RUN   TestForth/numbers_just_get_pushed_onto_the_stack
+[1 2 3 4 5] [1]
+[1 2 3 4 5] [2]
+[1 2 3 4 5] [3]
+[1 2 3 4 5] [4]
+[1 2 3 4 5] [5]
+=== RUN   TestForth/pushes_negative_numbers_onto_the_stack
+[-1 -2 -3 -4 -5] [-1]
+[-1 -2 -3 -4 -5] [-2]
+[-1 -2 -3 -4 -5] [-3]
+[-1 -2 -3 -4 -5] [-4]
+[-1 -2 -3 -4 -5] [-5]
+=== RUN   TestForth/can_add_two_numbers
+[1 2 +] [1]
+[1 2 +] [2]
+[1 2 +] [+]
+=== RUN   TestForth/errors_if_there_is_nothing_on_the_stack
+[+] [+]
+=== RUN   TestForth/errors_if_there_is_only_one_value_on_the_stack
+[1 +] [1]
+[1 +] [+]
+=== RUN   TestForth/can_subtract_two_numbers
+[3 4 -] [3]
+[3 4 -] [4]
+[3 4 -] [-]
+=== RUN   TestForth/errors_if_there_is_nothing_on_the_stack#01
+[-] [-]
+=== RUN   TestForth/errors_if_there_is_only_one_value_on_the_stack#01
+[1 -] [1]
+[1 -] [-]
+=== RUN   TestForth/can_multiply_two_numbers
+[2 4 *] [2]
+[2 4 *] [4]
+[2 4 *] [*]
+=== RUN   TestForth/errors_if_there_is_nothing_on_the_stack#02
+[*] [*]
+=== RUN   TestForth/errors_if_there_is_only_one_value_on_the_stack#02
+[1 *] [1]
+[1 *] [*]
+=== RUN   TestForth/can_divide_two_numbers
+[12 3 /] [12]
+[12 3 /] [3]
+[12 3 /] [/]
+=== RUN   TestForth/performs_integer_division
+[8 3 /] [8]
+[8 3 /] [3]
+[8 3 /] [/]
+=== RUN   TestForth/errors_if_dividing_by_zero
+[4 0 /] [4]
+[4 0 /] [0]
+[4 0 /] [/]
+=== RUN   TestForth/errors_if_there_is_nothing_on_the_stack#03
+[/] [/]
+=== RUN   TestForth/errors_if_there_is_only_one_value_on_the_stack#03
+[1 /] [1]
+[1 /] [/]
+=== RUN   TestForth/addition_and_subtraction
+[1 2 + 4 -] [1]
+[1 2 + 4 -] [2]
+[1 2 + 4 -] [+]
+[1 2 + 4 -] [4]
+[1 2 + 4 -] [-]
+=== RUN   TestForth/multiplication_and_division
+[2 4 * 3 /] [2]
+[2 4 * 3 /] [4]
+[2 4 * 3 /] [*]
+[2 4 * 3 /] [3]
+[2 4 * 3 /] [/]
+=== RUN   TestForth/copies_a_value_on_the_stack
+[1 dup] [1]
+[1 dup] [dup]
+=== RUN   TestForth/copies_the_top_value_on_the_stack
+[1 2 dup] [1]
+[1 2 dup] [2]
+[1 2 dup] [dup]
+=== RUN   TestForth/errors_if_there_is_nothing_on_the_stack#04
+[dup] [dup]
+=== RUN   TestForth/removes_the_top_value_on_the_stack_if_it_is_the_only_one
+[1 drop] [1]
+[1 drop] [drop]
+=== RUN   TestForth/removes_the_top_value_on_the_stack_if_it_is_not_the_only_one
+[1 2 drop] [1]
+[1 2 drop] [2]
+[1 2 drop] [drop]
+=== RUN   TestForth/errors_if_there_is_nothing_on_the_stack#05
+[drop] [drop]
+=== RUN   TestForth/swaps_the_top_two_values_on_the_stack_if_they_are_the_only_ones
+[1 2 swap] [1]
+[1 2 swap] [2]
+[1 2 swap] [swap]
+=== RUN   TestForth/swaps_the_top_two_values_on_the_stack_if_they_are_not_the_only_ones
+[1 2 3 swap] [1]
+[1 2 3 swap] [2]
+[1 2 3 swap] [3]
+[1 2 3 swap] [swap]
+=== RUN   TestForth/errors_if_there_is_nothing_on_the_stack#06
+[swap] [swap]
+=== RUN   TestForth/errors_if_there_is_only_one_value_on_the_stack#04
+[1 swap] [1]
+[1 swap] [swap]
+=== RUN   TestForth/copies_the_second_element_if_there_are_only_two
+[1 2 over] [1]
+[1 2 over] [2]
+[1 2 over] [over]
+=== RUN   TestForth/copies_the_second_element_if_there_are_more_than_two
+[1 2 3 over] [1]
+[1 2 3 over] [2]
+[1 2 3 over] [3]
+[1 2 3 over] [over]
+=== RUN   TestForth/errors_if_there_is_nothing_on_the_stack#07
+[over] [over]
+=== RUN   TestForth/errors_if_there_is_only_one_value_on_the_stack#05
+[1 over] [1]
+[1 over] [over]
+=== RUN   TestForth/can_consist_of_built-in_words
+[1 dup-twice] [1]
+[1 dup-twice] [dup dup]
+=== RUN   TestForth/execute_in_the_right_order
+[countup] [1 2 3]
+    forth_test.go:19: Forth([]string{": countup 1 2 3 ;", "countup"}) expected [1 2 3], got an error: "unhandled opearation: countup"
+=== RUN   TestForth/can_override_other_user-defined_words
+[1 foo] [1]
+[1 foo] [dup dup]
+=== RUN   TestForth/can_override_built-in_words
+[1 swap] [1]
+[1 swap] [dup]
+=== RUN   TestForth/can_override_built-in_operators
+[3 4 +] [3]
+[3 4 +] [4]
+[3 4 +] [*]
+=== RUN   TestForth/can_use_different_words_with_the_same_name
+[bar foo] [foo]
+    forth_test.go:19: Forth([]string{": foo 5 ;", ": bar foo ;", ": foo 6 ;", "bar foo"}) expected [5 6], got an error: "unhandled opearation: bar"
+=== RUN   TestForth/can_define_word_that_uses_word_with_the_same_name
+[foo] [foo 1 +]
+    forth_test.go:19: Forth([]string{": foo 10 ;", ": foo foo 1 + ;", "foo"}) expected [11], got an error: "unhandled opearation: foo"
+=== RUN   TestForth/cannot_redefine_non-negative_numbers
+[: 1 2 ;] [:]
+=== RUN   TestForth/cannot_redefine_negative_numbers
+[: -1 2 ;] [:]
+=== RUN   TestForth/errors_if_executing_a_non-existent_word
+[foo] [foo]
+=== RUN   TestForth/DUP_is_case-insensitive
+[1 DUP Dup dup] [1]
+[1 DUP Dup dup] [DUP]
+[1 DUP Dup dup] [Dup]
+[1 DUP Dup dup] [dup]
+=== RUN   TestForth/DROP_is_case-insensitive
+[1 2 3 4 DROP Drop drop] [1]
+[1 2 3 4 DROP Drop drop] [2]
+[1 2 3 4 DROP Drop drop] [3]
+[1 2 3 4 DROP Drop drop] [4]
+[1 2 3 4 DROP Drop drop] [DROP]
+[1 2 3 4 DROP Drop drop] [Drop]
+[1 2 3 4 DROP Drop drop] [drop]
+=== RUN   TestForth/SWAP_is_case-insensitive
+[1 2 SWAP 3 Swap 4 swap] [1]
+[1 2 SWAP 3 Swap 4 swap] [2]
+[1 2 SWAP 3 Swap 4 swap] [SWAP]
+[1 2 SWAP 3 Swap 4 swap] [3]
+[1 2 SWAP 3 Swap 4 swap] [Swap]
+[1 2 SWAP 3 Swap 4 swap] [4]
+[1 2 SWAP 3 Swap 4 swap] [swap]
+=== RUN   TestForth/OVER_is_case-insensitive
+[1 2 OVER Over over] [1]
+[1 2 OVER Over over] [2]
+[1 2 OVER Over over] [OVER]
+[1 2 OVER Over over] [Over]
+[1 2 OVER Over over] [over]
+=== RUN   TestForth/user-defined_words_are_case-insensitive
+[1 FOO Foo foo] [1]
+[1 FOO Foo foo] [dup]
+[1 FOO Foo foo] [dup]
+[1 FOO Foo foo] [dup]
+=== RUN   TestForth/definitions_are_case-insensitive
+[1 swap] [1]
+[1 swap] [DUP Dup dup]
+--- FAIL: TestForth (0.00s)
+    --- PASS: TestForth/numbers_just_get_pushed_onto_the_stack (0.00s)
+    --- PASS: TestForth/pushes_negative_numbers_onto_the_stack (0.00s)
+    --- PASS: TestForth/can_add_two_numbers (0.00s)
+    --- PASS: TestForth/errors_if_there_is_nothing_on_the_stack (0.00s)
+    --- PASS: TestForth/errors_if_there_is_only_one_value_on_the_stack (0.00s)
+    --- PASS: TestForth/can_subtract_two_numbers (0.00s)
+    --- PASS: TestForth/errors_if_there_is_nothing_on_the_stack#01 (0.00s)
+    --- PASS: TestForth/errors_if_there_is_only_one_value_on_the_stack#01 (0.00s)
+    --- PASS: TestForth/can_multiply_two_numbers (0.00s)
+    --- PASS: TestForth/errors_if_there_is_nothing_on_the_stack#02 (0.00s)
+    --- PASS: TestForth/errors_if_there_is_only_one_value_on_the_stack#02 (0.00s)
+    --- PASS: TestForth/can_divide_two_numbers (0.00s)
+    --- PASS: TestForth/performs_integer_division (0.00s)
+    --- PASS: TestForth/errors_if_dividing_by_zero (0.00s)
+    --- PASS: TestForth/errors_if_there_is_nothing_on_the_stack#03 (0.00s)
+    --- PASS: TestForth/errors_if_there_is_only_one_value_on_the_stack#03 (0.00s)
+    --- PASS: TestForth/addition_and_subtraction (0.00s)
+    --- PASS: TestForth/multiplication_and_division (0.00s)
+    --- PASS: TestForth/copies_a_value_on_the_stack (0.00s)
+    --- PASS: TestForth/copies_the_top_value_on_the_stack (0.00s)
+    --- PASS: TestForth/errors_if_there_is_nothing_on_the_stack#04 (0.00s)
+    --- PASS: TestForth/removes_the_top_value_on_the_stack_if_it_is_the_only_one (0.00s)
+    --- PASS: TestForth/removes_the_top_value_on_the_stack_if_it_is_not_the_only_one (0.00s)
+    --- PASS: TestForth/errors_if_there_is_nothing_on_the_stack#05 (0.00s)
+    --- PASS: TestForth/swaps_the_top_two_values_on_the_stack_if_they_are_the_only_ones (0.00s)
+    --- PASS: TestForth/swaps_the_top_two_values_on_the_stack_if_they_are_not_the_only_ones (0.00s)
+    --- PASS: TestForth/errors_if_there_is_nothing_on_the_stack#06 (0.00s)
+    --- PASS: TestForth/errors_if_there_is_only_one_value_on_the_stack#04 (0.00s)
+    --- PASS: TestForth/copies_the_second_element_if_there_are_only_two (0.00s)
+    --- PASS: TestForth/copies_the_second_element_if_there_are_more_than_two (0.00s)
+    --- PASS: TestForth/errors_if_there_is_nothing_on_the_stack#07 (0.00s)
+    --- PASS: TestForth/errors_if_there_is_only_one_value_on_the_stack#05 (0.00s)
+    --- PASS: TestForth/can_consist_of_built-in_words (0.00s)
+    --- FAIL: TestForth/execute_in_the_right_order (0.00s)
+    --- PASS: TestForth/can_override_other_user-defined_words (0.00s)
+    --- PASS: TestForth/can_override_built-in_words (0.00s)
+    --- PASS: TestForth/can_override_built-in_operators (0.00s)
+    --- FAIL: TestForth/can_use_different_words_with_the_same_name (0.00s)
+    --- FAIL: TestForth/can_define_word_that_uses_word_with_the_same_name (0.00s)
+    --- PASS: TestForth/cannot_redefine_non-negative_numbers (0.00s)
+    --- PASS: TestForth/cannot_redefine_negative_numbers (0.00s)
+    --- PASS: TestForth/errors_if_executing_a_non-existent_word (0.00s)
+    --- PASS: TestForth/DUP_is_case-insensitive (0.00s)
+    --- PASS: TestForth/DROP_is_case-insensitive (0.00s)
+    --- PASS: TestForth/SWAP_is_case-insensitive (0.00s)
+    --- PASS: TestForth/OVER_is_case-insensitive (0.00s)
+    --- PASS: TestForth/user-defined_words_are_case-insensitive (0.00s)
+    --- PASS: TestForth/definitions_are_case-insensitive (0.00s)
+FAIL
+exit status 1
+FAIL	forth	0.551s
