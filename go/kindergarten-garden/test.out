@@ -1,0 +1,17 @@
+[Alice] [Alice]
+[Alice] [Alice]
+[Alice Bob] [Alice Bob]
+[Alice Bob Charlie] [Alice Bob Charlie]
+[Alice Bob Charlie David Eve Fred Ginny Harriet Ileana Joseph Kincaid Larry] [Alice Bob Charlie David Eve Fred Ginny Harriet Ileana Joseph Kincaid Larry]
+[Samantha Patricia Xander Roger] [Samantha Patricia Xander Roger]
+[Alice] [Alice]
+[Alice] [Alice]
+--- FAIL: TestGarden (0.00s)
+    --- FAIL: TestGarden/names_out_of_order (0.00s)
+        kindergarten_garden_test.go:155: Lookup Patricia = ["radishes" "radishes" "grass" "clover"], want: ["violets" "clover" "radishes" "violets"]
+[Samantha Patricia Xander Roger] [Samantha Patricia Xander Roger]
+[Alice Bob Charlie Dan] [Alice Bob Charlie Dan]
+[Bob Charlie Dan Erin] [Bob Charlie Dan Erin]
+FAIL
+exit status 1
+FAIL	kindergarten	0.242s
