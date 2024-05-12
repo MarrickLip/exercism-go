@@ -58,16 +58,28 @@ func Answer(question string) (int, bool) {
 
 		switch nextPart {
 		case "plus":
-			nextNum, _ := popNum(&parts)
+			nextNum, err := popNum(&parts)
+			if err != nil {
+				return 0, false
+			}
 			result = result + nextNum
 		case "minus":
-			nextNum, _ := popNum(&parts)
+			nextNum, err := popNum(&parts)
+			if err != nil {
+				return 0, false
+			}
 			result = result - nextNum
 		case "multiplied":
-			nextNum, _ := popNum(&parts)
+			nextNum, err := popNum(&parts)
+			if err != nil {
+				return 0, false
+			}
 			result = result * nextNum
 		case "divided":
-			nextNum, _ := popNum(&parts)
+			nextNum, err := popNum(&parts)
+			if err != nil {
+				return 0, false
+			}
 			result = result / nextNum
 		default:
 			return 0, false
